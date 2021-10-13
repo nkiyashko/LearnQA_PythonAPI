@@ -1,19 +1,20 @@
 import requests
-import json
 
 url = "https://playground.learnqa.ru/ajax/api/compare_query_type"
 
-payload1 = {"method": "get"}
-payload2 = [{"method": "get"}, {"method": "post"}, {"method": "put"}, {"method": "delete"}]
+payload1 = {"method": 'GET'}
 
-response1 = requests.Request(url=url, params=payload1)
-print(response1)
-response2 = requests.head(url=url, data={"method": "head"})
+response1 = requests.get(url=url)
+print(response1.text)
+
+response2 = requests.head(url=url, data={"method": "HEAD"})
 print(response2)
+print(response2.text)
+
 response3 = requests.get(url=url, params=payload1)
-print(response3)
-response4 = requests.get(url=url, params=payload1)
-print(response4.text)
+print(response3.text)
+
+
 
 
 
