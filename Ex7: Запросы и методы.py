@@ -17,9 +17,9 @@ print(response3.text)
 method = [{"method": "GET"}, {"method": "POST"}, {"method": "PUT"}, {"method": "DELETE"}]
 for i in method:
     response4 = requests.get(url=url, params=i)
-    print(response4.text)
-    if response4 == {"success": "!"}:
-        print()
+    #print(response4.text)
+    if response4 is {"success": "!"}:
+        print(f'Answer is Sucses in get query with {i} params')
     response5 = requests.post(url=url, data=i)
     print(response5.text)
     if response5 == {"success": "!"}:
