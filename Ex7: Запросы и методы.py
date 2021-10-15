@@ -1,5 +1,4 @@
 import requests
-from json.decoder import JSONDecodeError
 
 url = "https://playground.learnqa.ru/ajax/api/compare_query_type"
 
