@@ -8,9 +8,7 @@ def _get_passwords_from_wiki():
     passwords = html_tree.xpath(locator)
     striped_passwords = list(map(lambda x: str(x).strip(), passwords))
     unique_passwords = list(dict.fromkeys(striped_passwords))
-
     return unique_passwords
-
 
 def _get_auth_cookie(login, password):
     params = {"login": login, "password": password}
@@ -22,7 +20,6 @@ def _validate_cookie(cookie):
     params = {"cookie": cookie}
     response = requests.get("https://playground.learnqa.ru/ajax/api/check_auth_cookie", params=params)
     return response.text == "You are authorized"
-
 
 login = "super_admin"
 passwords = _get_passwords_from_wiki()
