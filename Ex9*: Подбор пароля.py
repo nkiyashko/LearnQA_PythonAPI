@@ -2,7 +2,7 @@ import requests
 from lxml import html
 
 def _get_passwords_from_wiki():
-    response = requests.post("https://en.wikipedia.org/wiki/List_of_the_most_common_passwords")
+    response = requests.get("https://en.wikipedia.org/wiki/List_of_the_most_common_passwords")
     html_tree = html.fromstring(response.text)
     locator = '//*[contains(text(),"Top 25 most common passwords by year according to SplashData")]//..//td[@align="left"]/text()'
     passwords = html_tree.xpath(locator)
