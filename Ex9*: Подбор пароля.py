@@ -6,7 +6,6 @@ def _get_passwords_from_wiki():
     html_tree = html.fromstring(response.text)
     locator = '//*[contains(text(),"Top 25 most common passwords by year according to SplashData")]//..//td[@align="left"]/text()'
     passwords = html_tree.xpath(locator)
-
     striped_passwords = list(map(lambda x: str(x).strip(), passwords))
     unique_passwords = list(dict.fromkeys(striped_passwords))
 
