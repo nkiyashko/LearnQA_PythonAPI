@@ -9,7 +9,7 @@ locator = '//*[contains(text(),"Top 25 most common passwords by year according t
 passwords = tree.xpath(locator)
 for password in passwords:
     password = str(password).strip()
-    print(password)
+    #print(password)
     data = {"login": "super_admin", "password": password}
     response2 = requests.post("https://playground.learnqa.ru/ajax/api/get_secret_password_homework", data=data)
     auth_cookies = dict(response2.cookies)
