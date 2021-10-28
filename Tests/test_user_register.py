@@ -8,7 +8,7 @@ import pytest
 
 
 class TestUserRegister(BaseCase):
-    @pytest.mark.parametrize('data', [
+    data = [
         ({'password': '', 'username': 'learnqa', 'firstName': 'learnqa', 'lastName': 'learnqa',
           'email': "123456@example.com"}),
         ({'password': '123', 'username': '', 'firstName': 'learnqa', 'lastName': 'learnqa',
@@ -19,7 +19,7 @@ class TestUserRegister(BaseCase):
           'email': "123456@example.com"}),
         ({'password': '123', 'username': 'learnqa', 'firstName': 'learnqa', 'lastName': 'learnqa', 'email': ""})
     ]
-                             )
+
     def setup(self):
         base_part = "learnqa"
         domain = "example.com"
@@ -102,6 +102,7 @@ class TestUserRegister(BaseCase):
         Assertions.assert_code_status(response, 400)
         assert response.content.decode("utf-8") == f"The value of 'username' field is too long"
 
+    @pytest.mark.parametrize('data', data)
     def test_create_user_without_param(self, data):
 
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
