@@ -104,7 +104,6 @@ class TestUserRegister(BaseCase):
         assert response.content.decode("utf-8") == f"The value of 'username' field is too long"
 
     def test_create_user_without_param(self):
-        # for result in self.expected_result:
-            response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
-            assert response.status_code == 400
+        response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
+        assert response.status_code == 400
