@@ -26,12 +26,6 @@ class TestUserRegister(BaseCase):
         random_part = datetime.now().strftime("%m%d%Y%H%M%S")
         self.email = f"{base_part}{random_part}@{domain}"
 
-    # def gen_email(self):
-    #     base_part = "learnqa"
-    #     domain = "example.com"
-    #     random_part = datetime.now().strftime("%m%d%Y%H%M%S")
-    #     return f"{base_part}{random_part}@{domain}"
-
     def test_create_user_successfully(self):
         data = {
             'password': '123',
