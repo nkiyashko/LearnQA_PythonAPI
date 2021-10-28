@@ -1,6 +1,4 @@
 import requests
-import self
-
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
 from datetime import datetime
@@ -20,35 +18,31 @@ class TestUserRegister(BaseCase):
         ({'password': '123', 'username': 'learnqa', 'firstName': 'learnqa', 'lastName': 'learnqa', 'email': ""})
     ]
 
-    def setup(self):
-        base_part = "learnqa"
-        domain = "example.com"
-        random_part = datetime.now().strftime("%m%d%Y%H%M%S")
-        self.email = f"{base_part}{random_part}@{domain}"
+    # def setup(self):
+    #     base_part = "learnqa"
+    #     domain = "example.com"
+    #     random_part = datetime.now().strftime("%m%d%Y%H%M%S")
+    #     self.email = f"{base_part}{random_part}@{domain}"
 
     def test_create_user_successfully(self):
-        data = {
-            'password': '123',
-            'username': 'learnqa',
-            'firstName': 'learnqa',
-            'lastName': 'learnqa',
-            'email': self.email
-        }
+        data = self.prepare_registration_date()
+
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
         Assertions.assert_code_status(response, 200)
-        print(response.content)
+        # print(response.content)
         Assertions.assert_json_has_key(response, "id")
 
     def test_case_user_with_existing_email(self):
         email = 'vinkotov@example.com'
-        data = {
-            'password': '123',
-            'username': 'learnqa',
-            'firstName': 'learnqa',
-            'lastName': 'learnqa',
-            'email': email
-        }
+        data = self.prepare_registration_date(email)
+        # data = {
+        #     'password': '123',
+        #     'username': 'learnqa',
+        #     'firstName': 'learnqa',
+        #     'lastName': 'learnqa',
+        #     'email': email
+        # }
 
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
@@ -74,7 +68,7 @@ class TestUserRegister(BaseCase):
             'username': 'a',
             'firstName': 'learnqa',
             'lastName': 'learnqa',
-            'email': self.email
+            'email': self.prepare_registration_date()
         }
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
@@ -88,7 +82,7 @@ class TestUserRegister(BaseCase):
             'username': ('a' * 251),
             'firstName': 'learnqa',
             'lastName': 'learnqa',
-            'email': self.email
+            'email': self.prepare_registration_date()
         }
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
 
@@ -100,5 +94,5 @@ class TestUserRegister(BaseCase):
     def test_create_user_without_param(self, data):
 
         response = requests.post("https://playground.learnqa.ru/api/user/", data=data)
-        Assertions.assert_code_status(response, 400)
 
+        Assertions.assert_code_status(response, 400)
