@@ -24,7 +24,7 @@ class Assertions:
         assert name in response_as_dict, f"Response JSON does,t have a key '{name}'"
 
     @staticmethod
-    def assert_json_has_keys(response: Response, names):
+    def assert_json_has_keys(response: Response, names: list):
         try:
             response_as_dict = response.json()
         except json.JSONDecodeError:

@@ -1,0 +1,20 @@
+
+-----
+Test: tests/test_user_get.py::TestUserGet::test_get_user_details_not_auth (call)
+Time: 2021-10-30 12:01:43.056316
+Request method: GET
+Request URL: https://playgound.learnqa.ru/ajax/api_dev/user/2
+Request data: None
+Request header: {}
+Request cookies: {}
+
+
+-----
+Test: tests/test_user_get.py::TestUserGet::test_get_user_details_auth_as_same_user (call)
+Time: 2021-10-30 12:01:43.270506
+Request method: POST
+Request URL: https://playgound.learnqa.ru/ajax/api_dev/user/login
+Request data: {'email': 'vinkotov@example.com', 'password': '1234'}
+Request header: {}
+Request cookies: {}
+

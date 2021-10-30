@@ -1,0 +1,10 @@
+
+-----
+Test: test_file.py::test_get_user_details_not_auth (call)
+Time: 2021-10-30 12:04:13.269678
+Request method: GET
+Request URL: https://playgound.learnqa.ru/ajax/api_dev/user/2
+Request data: None
+Request header: {}
+Request cookies: {}
+
