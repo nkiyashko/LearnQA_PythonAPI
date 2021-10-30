@@ -30,13 +30,6 @@ class TestUserRegister(BaseCase):
     def test_case_user_with_existing_email(self):
         email = 'vinkotov@example.com'
         data = self.prepare_registration_date(email)
-        # data = {
-        #     'password': '123',
-        #     'username': 'learnqa',
-        #     'firstName': 'learnqa',
-        #     'lastName': 'learnqa',
-        #     'email': email
-        # }
 
         response = MyRequests.post("/user/", data=data)
 
