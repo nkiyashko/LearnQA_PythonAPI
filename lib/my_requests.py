@@ -4,22 +4,22 @@ import allure
 from environment import ENV_OBJECT
 
 
-class MyRequests():
+class MyRequests:
     @staticmethod
     def post(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
-        with allure.step(f"POST request to '{url}"):
+        with allure.step(f"POST request to '{url}'"):
             return MyRequests._send(url, data, headers, cookies, 'POST')
 
     def get(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
-        with allure.step(f"GET request to '{url}"):
+        with allure.step(f"GET request to '{url}'"):
             return MyRequests._send(url, data, headers, cookies, 'GET')
 
     def put(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
-        with allure.step(f"PUT request to '{url}"):
+        with allure.step(f"PUT request to '{url}'"):
             return MyRequests._send(url, data, headers, cookies, 'PUT')
 
     def delete(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
-        with allure.step(f"DELETE request to '{url}"):
+        with allure.step(f"DELETE request to '{url}'"):
             return MyRequests._send(url, data, headers, cookies, 'DELETE')
 
     @staticmethod
