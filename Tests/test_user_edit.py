@@ -56,6 +56,7 @@ class TestUserEdit(BaseCase):
         )
 
     # - Попытаемся изменить данные пользователя, будучи неавторизованными
+    @allure.step
     @allure.severity_level.TRIVIAL
     def test_edit_non_authorized_user(self):
         new_name = "Changed name"
@@ -69,6 +70,7 @@ class TestUserEdit(BaseCase):
         Assertions.assert_code_status(response3, 400)
 
     @allure.description("Попытаемся изменить данные пользователя, будучи авторизованными другим пользователем")
+    @allure.step
     @allure.severity_level.CRITICAL
     def test_edit_user_via_authorized_another_user(self):
         data = {
