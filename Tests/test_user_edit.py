@@ -1,8 +1,12 @@
+import allure
+import pytest
 from lib.my_requests import MyRequests
 from lib.base_case import BaseCase
 from lib.assertions import Assertions
 
 
+@allure.step
+@pytest.mark.skirif(ENV='dev')
 class TestUserEdit(BaseCase):
     def test_edit_just_created_user(self):
         # Register new user
@@ -51,7 +55,8 @@ class TestUserEdit(BaseCase):
             "Wrong name of the user after edit"
         )
 
-# - Попытаемся изменить данные пользователя, будучи неавторизованными
+    # - Попытаемся изменить данные пользователя, будучи неавторизованными
+    @allure.severity_level.TRIVIAL
     def test_edit_non_authorized_user(self):
         new_name = "Changed name"
 
@@ -63,7 +68,8 @@ class TestUserEdit(BaseCase):
 
         Assertions.assert_code_status(response3, 400)
 
-# - Попытаемся изменить данные пользователя, будучи авторизованными другим пользователем
+    @allure.description("Попытаемся изменить данные пользователя, будучи авторизованными другим пользователем")
+    @allure.severity_level.CRITICAL
     def test_edit_user_via_authorized_another_user(self):
         data = {
             'email': 'vinkotov@example.com',
@@ -78,7 +84,7 @@ class TestUserEdit(BaseCase):
 
         new_name = "Changed name"
 
-        response2 = MyRequests.put(f"/user/{user_id_from_auth_method}1",
+        response2 = MyRequests.put(f"/user/3",
                                    headers={"x-csrf-token": token},
                                    cookies={"auth_sid": auth_sid},
                                    data={"firstName": new_name}
@@ -86,7 +92,8 @@ class TestUserEdit(BaseCase):
 
         Assertions.assert_code_status(response2, 400)
 
-# - Попытаемся изменить email пользователя, будучи авторизованными тем же пользователем, на новый email без символа @
+    @allure.description("Попытаемся изменить email пользователя, будучи авторизованными тем же пользователем, на новый email без символа @")
+    @allure.severity_level.BLOCKER
     def test_edit_users_email_without_add_simbol(self):
         data = {
             'email': 'vinkotov@example.com',
@@ -110,8 +117,9 @@ class TestUserEdit(BaseCase):
 
         Assertions.assert_code_status(response2, 400)
 
-# - Попытаемся изменить firstName пользователя, будучи авторизованными тем же пользователем, на очень короткое
-# значение в один символ
+    @allure.description(" Попытаемся изменить firstName пользователя, будучи авторизованными тем же пользователем, \
+    на очень короткое значение в один символ")
+    @allure.severity_level.NORMAL
     def test_edit_users_firstname_to_short(self):
         data = {
             'email': 'vinkotov@example.com',
@@ -133,5 +141,3 @@ class TestUserEdit(BaseCase):
                                    )
 
         Assertions.assert_code_status(response2, 400)
-
-
