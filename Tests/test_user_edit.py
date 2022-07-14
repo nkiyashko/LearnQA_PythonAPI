@@ -6,7 +6,7 @@ from lib.assertions import Assertions
 
 
 @allure.step
-@pytest.mark.skirif(ENV='dev')
+@pytest.mark.skipif(ENV='dev')
 class TestUserEdit(BaseCase):
     def test_edit_just_created_user(self):
         # Register new user
